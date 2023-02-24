@@ -1,0 +1,40 @@
+<div class="login_page">
+    <div class="cantainer">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="card">
+                    <h1>GiftCard Order History</h1>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-bordered ">
+                                <thead>
+                                    <th>User Name</th>
+                                    <th>Email</th>
+                                    <th>GiftCard Name</th>
+                                    <th>Amount</th>
+                                    <th>GiftCard Issue Date</th>
+                                    <th>Recipients Name</th>
+                                    <th>Recipients Email</th>
+                                    <th>Delivary Type</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of orders">
+                                        <td> {{item?.user?.firstName}} {{item?.user?.lastName}}</td>
+                                        <td> {{item?.user?.email}}</td>
+                                        <td> {{item?.giftCard?.giftCardName}}</td>
+                                        <td> {{item?.giftCard?.amount | currency :"INR":"symbol"}}</td>
+                                        <td> {{item?.giftCardIssueDate | date}}</td>
+                                        <td> {{item?.recipientsName}}</td>
+                                        <td> {{item?.recipientsEmail}}</td>
+                                        <td> {{item?.delivaryType}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

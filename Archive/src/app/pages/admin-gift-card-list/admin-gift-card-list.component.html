@@ -1,0 +1,104 @@
+<div class="login_page">
+    <div class="cantainer">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="card">
+                    <h3>GiftCard List</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-bordered ">
+                                <thead>
+                                    <th>GiftCard Id</th>
+                                    <th>GiftCard Name</th>
+                                    <th>Brand List</th>
+                                    <th>Amount</th>
+                                    <th>About GiftCard</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of giftCards">
+                                        <td> {{item?.giftCardId}}</td>
+                                        <td> {{item?.giftCardName}}</td>
+                                        <td> {{item?.brandList}}</td>
+                                        <td> {{item?.amount | currency : "INR": "symbol"}}</td>
+                                        <td> {{item?.aboutGiftCard}}</td>
+                                        <td>
+                                            <button class="btn btn-primary" (click)="onUpdate(item)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger" (click)="onDelete(item.giftCardId)" type="button"
+                                                >Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal start-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <form #addSomeForm="ngForm" (ngSubmit)="onSubmit(addSomeForm)" [noValidate]="false">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Update GiftCard Details</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 mt-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Gift Card Name</label>
+                                <input type="text" class="form-control" [(ngModel)]="selectedGiftCard.giftCardName"  name="giftCardName" required aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                    
+                    
+                        <div class="col-12 mt-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Amount</label>
+                                <input type="number" class="form-control" [(ngModel)]="selectedGiftCard.amount"  name="amount" required aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                    
+                    
+                        <div class="col-12 mt-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Brand List</label>
+                                <input type="text" class="form-control" [(ngModel)]="selectedGiftCard.brandList"  name="brandList" minlength="1"  required
+                                    aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">About Gift Card</label>
+                                <input type="text" class="form-control" [(ngModel)]="selectedGiftCard.aboutGiftCard" name="aboutGiftCard" required aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeModalBtn" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button>
+                    <button type="button" type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+
+        </form>
+
+
+    </div>
+</div>
+<!-- Modal END-->

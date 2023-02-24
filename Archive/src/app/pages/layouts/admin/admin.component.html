@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand ms-3" href="/admin">GiftCard App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            
+            <li class="nav-item">
+                <a class="nav-link"  routerLink="/admin/customers" routerLinkActive="active">Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/admin/add-gift-card" routerLinkActive="active">Add Gift Card</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/admin/gift-card-list" routerLinkActive="active">GiftCards</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/admin/payments" routerLinkActive="active">Payments</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/admin/r-gifts" routerLinkActive="active">Received GiftCards</a>
+            </li>
+           
+            <li class="nav-item">
+                <a class="nav-link" href="#" (click)="onLogout()">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container mt-4">
+    <router-outlet></router-outlet>
+</div>

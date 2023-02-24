@@ -1,0 +1,139 @@
+<div class="login_page">
+    <div class="cantainer">
+        <div class="row mb-5">
+            <div class="col-md-12 ">
+                <div class="card">
+                    <h3>Search Payments</h3>
+                    <hr>
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                                type="button" role="tab" aria-controls="nav-home" aria-selected="true">Filter By Payment ID</button>
+                            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                                type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Filter By
+                                Card Number</button>
+                                <button class="nav-link" id="nav-card-name-tab" data-bs-toggle="tab" data-bs-target="#nav-card-name" type="button"
+                                    role="tab" aria-controls="nav-profile" aria-selected="false">Filter By
+                                    Card Name</button>
+                                    <button class="nav-link" id="nav-card-giftId-tab" data-bs-toggle="tab" data-bs-target="#nav-card-giftId" type="button"
+                                        role="tab" aria-controls="nav-profile" aria-selected="false">Filter By
+                                        GiftCard ID</button>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <form #filterByDateForm="ngForm" (ngSubmit)="paymentById(filterByDateForm)" [noValidate]="false">
+        
+                                <div class="row">
+                                    <div class="col-4 mt-3">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Payment ID</label>
+                                            <input type="number" class="form-control" ngModel name="paymentId" 
+                                                aria-describedby="emailHelp">
+                                        </div>
+                                    </div>
+        
+        
+                                </div>
+        
+                                <button type="submit" class="btn btn-outline-primary mt-3">Search</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <form #filterByCustomerIdForm="ngForm" (ngSubmit)="paymentByCardNumber(filterByCustomerIdForm)"
+                                [noValidate]="false">
+        
+                                <div class="row">
+        
+                                    <div class="col-4 mt-3">
+                                        <div class="form-group">
+                                            <label for="roleId">Card Number</label>
+                                            <input type="number" class="form-control" ngModel name="cardNumber" 
+                                                aria-describedby="emailHelp" required>
+                                        </div>
+                                    </div>
+        
+                                </div>
+        
+                                <button type="submit" class="btn btn-outline-primary mt-3">Search</button>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-card-name" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <form #filterByCustomerIdAForm="ngForm" (ngSubmit)="paymentCardName(filterByCustomerIdAForm)"
+                                [noValidate]="false">
+                        
+                                <div class="row">
+                        
+                                    <div class="col-4 mt-3">
+                                        <div class="form-group">
+                                            <label for="roleId">Name on Card</label>
+                                            <input type="text" class="form-control" ngModel name="nameOnCard"  aria-describedby="emailHelp"
+                                                required>
+                                        </div>
+                                    </div>
+                        
+                                </div>
+                        
+                                <button type="submit" class="btn btn-outline-primary mt-3">Search</button>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-card-giftId" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <form #filterByCustomerIdBForm="ngForm" (ngSubmit)="paymentByGiftId(filterByCustomerIdBForm)" [noValidate]="false">
+                        
+                                <div class="row">
+                        
+                                    <div class="col-4 mt-3">
+                                        <div class="form-group">
+                                            <label for="roleId">GiftCard ID</label>
+                                            <input type="number" class="form-control" ngModel name="gId"  aria-describedby="emailHelp"
+                                                required>
+                                        </div>
+                                    </div>
+                        
+                                </div>
+                        
+                                <button type="submit" class="btn btn-outline-primary mt-3">Search</button>
+                            </form>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="card">
+                    <h1>Payment List</h1>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-bordered ">
+                                <thead>
+                                    <th>User Name</th>
+                                    <th>Email</th>
+                                    <th>cardNumber</th>
+                                    <th>Name on the Card</th>
+                                    <th>Payment Amount</th>
+                                    <th>Payment Date</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of paymentList">
+                                        <td> {{item?.users?.firstName}} {{item?.user?.lastName}}</td>
+                                        <td> {{item?.users?.email}}</td>
+                                        <td> {{item?.cardNumber}}</td>
+                                        <td> {{item?.nameonthecard}}</td>
+                                        <td> {{item?.paymentAmount}}</td>
+                                        <td> {{item?.paymentDate}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,210 @@
+<div class="login_page">
+    <div class="cantainer">
+        <div class="row mb-5">
+            <div class="col-md-12 ">
+                <div class="card">
+                    <h3>Search Gift Cards</h3>
+                    <hr>
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                                type="button" role="tab" aria-controls="nav-home" aria-selected="true">Filter By GiftCard Name</button>
+                            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                                type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Filter By
+                                GiftCard ID</button>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <form #filterByDateForm="ngForm" (ngSubmit)="giftByName(filterByDateForm)" [noValidate]="false">
+        
+                                <div class="row">
+                                    <div class="col-4 mt-3">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">GiftCard By Name</label>
+                                            <input type="text" class="form-control" ngModel name="giftName" required
+                                                aria-describedby="emailHelp">
+                                        </div>
+                                    </div>
+                                   
+        
+                                </div>
+        
+                                <button type="submit" class="btn btn-outline-primary mt-3">Search</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <form #filterByCustomerIdForm="ngForm" (ngSubmit)="giftById(filterByCustomerIdForm)"
+                                [noValidate]="false">
+        
+                                <div class="row">
+        
+                                    <div class="col-4 mt-3">
+                                        <div class="form-group">
+                                            <label for="roleId">GiftCard ID</label>
+                                            <input type="number" class="form-control" ngModel name="gId" required aria-describedby="emailHelp" required>
+                                        </div>
+                                    </div>
+        
+                                </div>
+        
+                                <button type="submit" class="btn btn-outline-primary mt-3">Search</button>
+                            </form>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="card">
+                    <h3>GiftCard List</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-bordered ">
+                                <thead>
+                                    <th>GiftCard Id</th>
+                                    <th>GiftCard Name</th>
+                                    <th>Brand List</th>
+                                    <th>Amount</th>
+                                    <th>About GiftCard</th>
+                                    <th>Update</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of giftCards">
+                                        <td> {{item?.giftCardId}}</td>
+                                        <td> {{item?.giftCardName}}</td>
+                                        <td> {{item?.brandList}}</td>
+                                        <td> {{item?.amount | currency : "INR": "symbol"}}</td>
+                                        <td> {{item?.aboutGiftCard}}</td>
+                                        <td>
+                                            <button class="btn btn-primary" (click)="applyThisGiftCard(item)" type="button"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModal">Apply this GiftCard</button>
+                                        </td>
+                                       
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal start-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <form #addSomeForm="ngForm" (ngSubmit)="onSubmit(addSomeForm)" [noValidate]="false">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Extra GiftCard Details</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 mt-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Delivary Type</label>
+                                <select class="form-control" name="delivaryType" ngModel id="delivaryType" required>
+                                    <option value="" disabled> --- SELECT --- </option>
+                                    <option value="ONLINE">ONLINE</option>
+                                    <option value="OFFLINE">OFFLINE</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <!-- <div class="col-12 mt-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Gift Card Issue Date</label>
+                                <input type="date" class="form-control" ngModel
+                                    name="giftCardIssueDate" required aria-describedby="emailHelp" >
+                            </div>
+                        </div> -->
+
+
+                        <div class="col-12 mt-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Recipients Email</label>
+                                <input type="email" class="form-control" ngModel
+                                    name="recipientsEmail" minlength="1" required aria-describedby="emailHelp" >
+                            </div>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Recipients Name</label>
+                                <input type="text" class="form-control" ngModel name="recipientsName" minlength="1" required
+                                    aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Recipients Address</label>
+                                <input type="text" class="form-control" ngModel name="receiverAddress" minlength="1" required
+                                    aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Recipients Mobile Number</label>
+                                <input type="number" class="form-control" ngModel
+                                    name="recipientsMobileNumber" pattern="^\d{10}$" required aria-describedby="emailHelp">
+                            </div>
+                        </div>
+<div class="col-12">
+    <hr>
+</div>
+
+                    <div class="col-12 mt-3">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Card Expiry</label>
+                            <input type="date" class="form-control" ngModel name="cardExpiry"  required
+                                aria-describedby="emailHelp">
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Card Number</label>
+                            <input type="number" class="form-control" ngModel name="cardNumber" pattern="^\d{16}$" required
+                                aria-describedby="emailHelp">
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Card CVV</label>
+                            <input type="number" class="form-control" ngModel name="cvv" pattern="^\d{3}$" required
+                                aria-describedby="emailHelp">
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Name on the card</label>
+                            <input type="text" class="form-control" ngModel name="nameonthecard" required
+                                aria-describedby="emailHelp">
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeModalBtn" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button>
+                    <button type="button" type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+
+        </form>
+
+
+    </div>
+</div> 
+<!-- Modal END-->

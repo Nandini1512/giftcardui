@@ -1,0 +1,36 @@
+<div class="login_page">
+    <div class="cantainer">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="card">
+                    <h3>User List</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-bordered ">
+                                <thead>
+                                    <th>User Id</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Mobile Number</th>
+                                    <th>Address</th> 
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of customers">
+                                        <td> {{item?.userId}}</td>
+                                        <td> {{item?.firstName}}</td>
+                                        <td> {{item?.lastName}}</td>
+                                        <td> {{item?.email}}</td>
+                                        <td> {{item?.mobile}}</td>
+                                        <td> {{item?.address}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
